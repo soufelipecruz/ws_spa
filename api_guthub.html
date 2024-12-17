@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // Endereço URL (Pode ser utilizado direto no fetch)
+        const URL = 'https://api.github.com/users/soufelipecruz';
+
+        // Função para buscar informações de um usuário
+        // Utilizando async await e try catch para tratamento de erros
+        async function info_usuario() {
+        try {
+            const response = await fetch(`${URL}`);
+            
+            if (!response.ok) {
+            throw new Error(`Usuário não encontrado: ${response.status}`);
+            }
+
+            const data = await response.json();
+            
+            // Estou exibindo informações do usuário no console
+            // Lembrando que estou utilizando o objeto json
+            console.log('Nome:', data.name);
+            console.log('Bio:', data.bio);
+            console.log('Repositórios Públicos:', data.public_repos);
+            console.log('Avatar:', data.avatar_url);
+        } catch (error) {
+            console.error('Erro:', error.message);
+        }
+        }
+
+        info_usuario(); 
+
+    </script>
+</body>
+</html>
